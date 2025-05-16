@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+    --color-mainBeige: #fff5e1;
+    --color-mainNavy: #0c1844;
+    --color-pointCoral: #ff6969;
+}
+
+@layer components {
+    .main-box {
+        @apply w-[400px] h-[880px] mx-auto text-mainNavy;
+    }
+    .basic-btn {
+        @apply cursor-pointer w-full bg-mainNavy text-mainBeige font-semibold text-center rounded-xl shadow-md shadow-mainNavy/50 hover:bg-pointCoral hover:shadow-pointCoral/80;
+    }
+}
+
+body {
+    background-color: #fff5e1;
+}
