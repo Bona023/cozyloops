@@ -1,8 +1,12 @@
+"use client";
 import Input from "@/component/input";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useFormState } from "react-dom";
+import { SignUpAction } from "./action";
 
 export default function SignUp() {
+    const [state, dispatch] = useFormState(SignUpAction, null);
     return (
         <div className="pt-12 px-10 flex flex-col">
             <div className="flex justify-between items-center">
@@ -12,7 +16,7 @@ export default function SignUp() {
                 </Link>
             </div>
             <form
-                action=""
+                action={dispatch}
                 className="flex flex-col justify-center items-center gap-3 pt-16 pb-5 px-1"
             >
                 <Input
@@ -20,28 +24,28 @@ export default function SignUp() {
                     type="text"
                     placeholder="email"
                     required
-                    errors={[]}
+                    errors={state?.fieldErrors.email}
                 />
                 <Input
                     name="username"
                     type="text"
-                    placeholder="사용자 이름"
+                    placeholder="닉네임"
                     required
-                    errors={[]}
+                    errors={state?.fieldErrors.username}
                 />
                 <Input
                     name="password"
                     type="password"
                     placeholder="비밀번호"
                     required
-                    errors={[]}
+                    errors={state?.fieldErrors.password}
                 />
                 <Input
-                    name="confirm-password"
+                    name="confirm_password"
                     type="password"
                     placeholder="비밀번호 확인"
                     required
-                    errors={[]}
+                    errors={state?.fieldErrors.confirm_password}
                 />
                 <button className="basic-btn text-lg py-2">가입하기</button>
             </form>
