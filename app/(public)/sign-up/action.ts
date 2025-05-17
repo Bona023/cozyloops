@@ -4,12 +4,20 @@ import bcrypt from "bcrypt";
 import db from "@/lib/db";
 import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import { PASSWORD_HASHED_NUM, PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_REGEX, PASSWORD_REGEX_ERROR, USERNAME_MAX_LENGTH, USERNAME_MIN_LENGTH } from "@/lib/content";
 
 const formSchema = z
     .object({
         email: z.string().email({ message: "사용하실 email을 입력해주세요" }),
-        username: z.string().min(3, "사용자이름은 3글자 이상이어야 합니다.").max(20, "사용자이름은 20글자 이하여야 합니다."),
-        password: z.string().min(4),
+        username: z
+            .string()
+            .min(USERNAME_MIN_LENGTH, "닉네임은 " + USERNAME_MIN_LENGTH + " 글자 이상이어야 합니다.")
+            .max(USERNAME_MAX_LENGTH, "닉네임은 " + USERNAME_MAX_LENGTH + " 글자 이하여야 합니다."),
+        password: z
+            .string()
+            .min(PASSWORD_MIN_LENGTH, "비밀번호는 " + PASSWORD_MIN_LENGTH + "글자 이상이어야 합니다.")
+            .max(PASSWORD_MAX_LENGTH, "비밀번호는 " + PASSWORD_MAX_LENGTH + "글자 이하여야 합니다.")
+            .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
         confirm_password: z.string(),
     })
     .superRefine(async ({ username }, ctx) => {
@@ -62,7 +70,7 @@ export async function SignUpAction(prevState: any, formData: FormData) {
     };
     const result = await formSchema.spa(data);
     if (result.success) {
-        const hashedPw = await bcrypt.hash(result.data.password, 12);
+        const hashedPw = await bcrypt.hash(result.data.password, PASSWORD_HASHED_NUM);
         const user = await db.user.create({
             data: {
                 username: result.data.username,
