@@ -8,12 +8,14 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  email    String?  @unique
-  password String?
-  phone    Int?     @unique
-  avatar   String?
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  github_id Int?     @unique
+  kakao_id  Int?     @unique
+  username  String   @unique
+  email     String?  @unique
+  password  String?
+  phone     Int?     @unique
+  avatar    String?
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
 }

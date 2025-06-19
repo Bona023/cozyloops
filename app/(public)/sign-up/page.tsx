@@ -53,9 +53,9 @@ export default function SignUp() {
             <div className="flex flex-col gap-4 py-5 px-1">
                 <Link
                     className="basic-btn text-lg py-2"
-                    href="/start"
+                    href="api/github/start"
                 >
-                    카톡으로 계속하기
+                    깃헙으로 계속하기
                 </Link>
                 <Link
                     className="basic-btn text-lg py-2"

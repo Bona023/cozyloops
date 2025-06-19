@@ -4,17 +4,34 @@
     --color-mainBeige: #fff5e1;
     --color-mainNavy: #0c1844;
     --color-pointCoral: #ff6969;
+    --color-pointRed: #c70039;
+}
+
+@layer utilities {
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 @layer components {
     .main-box {
-        @apply w-[400px] h-[880px] mx-auto text-mainNavy;
+        @apply w-[400px] h-[880px] mx-auto my-auto text-mainNavy;
     }
     .basic-btn {
         @apply cursor-pointer w-full bg-mainNavy text-mainBeige font-semibold text-center rounded-xl shadow-md shadow-mainNavy/50 hover:bg-pointCoral hover:shadow-pointCoral/80;
+    }
+    .point-btn {
+        @apply flex justify-center items-center gap-2 bg-pointCoral text-white font-semibold rounded-xl shadow-md shadow-pointCoral/80;
+    }
+    .follow-btn {
+        @apply w-full flex justify-center items-center gap-2 bg-pointRed text-white font-semibold rounded-xl shadow-md shadow-pointCoral/80;
+    }
+    .category-btn {
+        @apply bg-pointCoral text-white font-semibold py-1 px-3 rounded-lg;
     }
 }
 
 body {
     background-color: #fff5e1;
+    height: 100vh;
 }

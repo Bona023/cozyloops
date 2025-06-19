@@ -12,7 +12,9 @@ const formSchema = z
         username: z
             .string()
             .min(USERNAME_MIN_LENGTH, "닉네임은 " + USERNAME_MIN_LENGTH + " 글자 이상이어야 합니다.")
-            .max(USERNAME_MAX_LENGTH, "닉네임은 " + USERNAME_MAX_LENGTH + " 글자 이하여야 합니다."),
+            .max(USERNAME_MAX_LENGTH, "닉네임은 " + USERNAME_MAX_LENGTH + " 글자 이하여야 합니다.")
+            .refine((val) => !val.includes("-gh"), { message: "'-gh'는 username에 사용할 수 없습니다." })
+            .refine((val) => !val.includes("-kkt"), { message: "'-kkt'는 username에 사용할 수 없습니다." }),
         password: z
             .string()
             .min(PASSWORD_MIN_LENGTH, "비밀번호는 " + PASSWORD_MIN_LENGTH + "글자 이상이어야 합니다.")
