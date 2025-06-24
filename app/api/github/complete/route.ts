@@ -1,5 +1,5 @@
 import db from "@/lib/db";
-import { getGithubAccessToken, getGithubUserProfile } from "@/lib/github";
+import { getGithubAccessToken, getGithubUserProfile } from "@/lib/oauth";
 import { sessionLogin } from "@/lib/update-session";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";

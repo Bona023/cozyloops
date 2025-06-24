@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export function GET() {
     const baseURL = "https://github.com/login/oauth/authorize";
@@ -9,5 +9,5 @@ export function GET() {
     };
     const formattedParams = new URLSearchParams(params).toString();
     const finalUrl = `${baseURL}?${formattedParams}`;
-    return redirect(finalUrl);
+    return NextResponse.redirect(finalUrl);
 }

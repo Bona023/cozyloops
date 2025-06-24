@@ -11,6 +11,8 @@ const publicOnlyUrl: Routes = {
     "/sign-up": true,
     "/api/github/start": true,
     "/api/github/complete": true,
+    "/api/naver/start": true,
+    "/api/naver/complete": true,
 };
 
 export async function middleware(request: NextRequest) {

@@ -59,9 +59,9 @@ export default function SignUp() {
                 </Link>
                 <Link
                     className="basic-btn text-lg py-2"
-                    href="/start"
+                    href="api/naver/start"
                 >
-                    구글로 계속하기
+                    네이버로 계속하기
                 </Link>
             </div>
         </div>
